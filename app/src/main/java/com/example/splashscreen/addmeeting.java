@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import java.text.SimpleDateFormat;
@@ -24,9 +28,13 @@ import java.util.Calendar;
 public class addmeeting extends AppCompatActivity {
 
     private Button meetingsave;
+    private Button btnpicker;
+
+    int PLACE_PICKER_REQUEST = 1;
+
 
     EditText inputtopic,inputdatetime,inputplace,inputauthor,inputmember1,inputmember2,inputmember3;
-
+    private View view;
 
 
     @Override
@@ -43,6 +51,8 @@ public class addmeeting extends AppCompatActivity {
         inputmember2 = findViewById(R.id.inputmember2);
         inputmember3 = findViewById(R.id.inputmember3);
         meetingsave=(Button) findViewById(R.id.meetsave);
+        btnpicker=(Button) findViewById(R.id.btnpicker);
+
 
        inputdatetime.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -164,9 +174,42 @@ public class addmeeting extends AppCompatActivity {
         new DatePickerDialog(addmeeting.this,dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    //code of place picker to get the place with google api
+
+    public void goPlacePicker(View view){
+
+        //this is the place to call the place picker function
+
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+
+            startActivityForResult(builder.build(addmeeting.this),PLACE_PICKER_REQUEST);
+        }catch (GooglePlayServicesRepairableException e ){
+            e.printStackTrace();
+
+        }catch (GooglePlayServicesNotAvailableException e ){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void  onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLACE_PICKER_REQUEST){
+            if (resultCode == RESULT_OK){
+                Place place = PlacePicker.getPlace(addmeeting.this, data);
+                inputplace.setText(place.getAddress());
+
+            }
+        }
+    }
+
+
 
     public void openmainpage1(){
         Intent intent = new Intent(this, MainPage1.class);
         startActivity(intent);
     }
+
+
 }

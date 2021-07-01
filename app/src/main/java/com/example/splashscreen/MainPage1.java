@@ -12,6 +12,8 @@ public class MainPage1 extends AppCompatActivity {
     private Button addmeet;
     private Button logout;
     private Button history;
+    private Button mailbox;
+
 
 
     @Override
@@ -23,6 +25,7 @@ public class MainPage1 extends AppCompatActivity {
         addmeet=(Button)findViewById(R.id.btnaddmeet);
         history = (Button)findViewById(R.id.btnhistory);
         logout = (Button)findViewById(R.id.btnlogout);
+        mailbox = (Button)findViewById(R.id.btnmailbox);
 
         addmeet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,13 @@ public class MainPage1 extends AppCompatActivity {
             }
         });
 
+        mailbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openmailbox();
+            }
+        });
+
     }
 
     public void openaddmeeting(){
@@ -58,6 +68,11 @@ public class MainPage1 extends AppCompatActivity {
 
     public void openmeethistory(){
         Intent intent = new Intent(this, meethistory.class);
+        startActivity(intent);
+    }
+
+    public void openmailbox(){
+        Intent intent = new Intent(this, mailbox.class);
         startActivity(intent);
     }
 
