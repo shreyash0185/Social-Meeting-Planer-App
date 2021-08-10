@@ -6,13 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainPage1 extends AppCompatActivity {
 
-    private Button addmeet;
-    private Button logout;
-    private Button history;
-    private Button mailbox;
+    //private Button addmeet;
+    //private Button logout;
+    //private Button history;
+    //private Button mailbox;
+
+    TextView txtchat;
+    TextView txtlogout;
+    TextView txtmailbox;
+    TextView txthistory;
+    TextView txtplanemeet;
+
+
 
 
 
@@ -22,36 +31,48 @@ public class MainPage1 extends AppCompatActivity {
         setContentView(R.layout.activity_main_page1);
         getSupportActionBar().hide();
 
-        addmeet=(Button)findViewById(R.id.btnaddmeet);
-        history = (Button)findViewById(R.id.btnhistory);
-        logout = (Button)findViewById(R.id.btnlogout);
-        mailbox = (Button)findViewById(R.id.btnmailbox);
+        //addmeet=(Button)findViewById(R.id.btnaddmeet);
+        //history = (Button)findViewById(R.id.btnhistory);
+        //logout = (Button)findViewById(R.id.btnlogout);
+        //mailbox = (Button)findViewById(R.id.btnmailbox);
+        txtchat=findViewById(R.id.btnchat);
+        txtlogout  =findViewById(R.id.btnlogout);
+        txtmailbox  =findViewById(R.id.btnmailbox);
+        txthistory =findViewById(R.id.btnhistory);
+        txtplanemeet=findViewById(R.id.btnaddmeet);
 
-        addmeet.setOnClickListener(new View.OnClickListener() {
+        txtplanemeet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openaddmeeting();
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        txtlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openloginpage();
             }
         });
 
-        history.setOnClickListener(new View.OnClickListener() {
+        txthistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openmeethistory();
             }
         });
 
-        mailbox.setOnClickListener(new View.OnClickListener() {
+        txtmailbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openmailbox();
+            }
+        });
+
+        txtchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openchatbox();
             }
         });
 
@@ -73,6 +94,11 @@ public class MainPage1 extends AppCompatActivity {
 
     public void openmailbox(){
         Intent intent = new Intent(this, mailbox.class);
+        startActivity(intent);
+    }
+
+    public void openchatbox(){
+        Intent intent = new Intent(this, chatwithmember.class);
         startActivity(intent);
     }
 

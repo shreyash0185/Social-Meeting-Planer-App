@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Splashscreen">
-        <activity android:name=".mailbox"></activity>
+        <activity android:name=".chatwithmember"></activity>
+        <activity android:name=".mailbox" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

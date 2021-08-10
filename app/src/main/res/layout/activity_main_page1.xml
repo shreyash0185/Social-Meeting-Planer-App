@@ -6,110 +6,141 @@
     android:layout_height="match_parent"
     tools:context=".MainPage1">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+       >
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="439dp"
-        android:layout_height="117dp"
-        android:background="@drawable/ic_wave_lightblue_"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/btnaddmeet"
+            android:layout_width="321dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="60dp"
 
-    <Button
-        android:id="@+id/btnhistory"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_bg"
-        android:text=" History"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+            android:background="@drawable/meetbg"
+            android:paddingLeft="75dp"
+            android:text="                                             Plane a Meet"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
 
-    <Button
-        android:id="@+id/btnlogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_bg"
-        android:text="LogOut"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12">
 
 
-    <Button
-        android:id="@+id/btnmailbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_bg"
-        android:text="MailBox"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+        </TextView>
 
-    <Button
-        android:id="@+id/btnaddmeet"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_bg"
-        android:text="Add Meeting"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
+        <TextView
+            android:id="@+id/btnchat"
+            android:layout_width="321dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="20dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+            android:background="@drawable/chatbg"
+            android:paddingLeft="30dp"
+            android:text="Chat,                                             Interact with other                  users.                              "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:fontFamily="sans-serif-black"
-        android:text="                 Plan a Meet !"
-        android:textColor="@color/orage"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.317">
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="438dp"
-        android:layout_height="108dp"
-        android:background="@drawable/ic_wave__oreng_"
-        android:paddingRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.996" />
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/btnmailbox"
+            android:layout_width="321dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="20dp"
+
+            android:background="@drawable/mailbg"
+            android:paddingLeft="75dp"
+            android:text="                                       MailBox"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.731">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/btnhistory"
+            android:layout_width="321dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="20dp"
+
+
+
+            android:background="@drawable/hisbg"
+            android:paddingLeft="75dp"
+            android:text="                                       History"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.53">
+
+
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/btnlogout"
+            android:layout_width="321dp"
+            android:layout_height="86dp"
+            android:layout_marginBottom="20dp"
+
+            android:background="@drawable/logbg"
+            android:paddingLeft="75dp"
+            android:text="                                        Logout"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.613"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.929">
+
+
+        </TextView>
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

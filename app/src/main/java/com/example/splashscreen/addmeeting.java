@@ -1,10 +1,13 @@
 package com.example.splashscreen;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,6 +27,8 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 public class addmeeting extends AppCompatActivity {
 
@@ -34,6 +39,7 @@ public class addmeeting extends AppCompatActivity {
 
 
     EditText inputtopic,inputdatetime,inputplace,inputauthor,inputmember1,inputmember2,inputmember3;
+    TextView textchat;
     private View view;
 
 
@@ -52,6 +58,7 @@ public class addmeeting extends AppCompatActivity {
         inputmember3 = findViewById(R.id.inputmember3);
         meetingsave=(Button) findViewById(R.id.meetsave);
         btnpicker=(Button) findViewById(R.id.btnpicker);
+        textchat=findViewById(R.id.textchat);
 
 
        inputdatetime.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +67,32 @@ public class addmeeting extends AppCompatActivity {
                showDateTimeDialog(inputdatetime);
            }
        });
+
+       //////////////////
+
+        btnpicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PlacePicker.IntentBuilder builder=new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(addmeeting.this),101);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        textchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openchat();
+            }
+        });
+
+
 
       //////
         meetingsave.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +170,9 @@ public class addmeeting extends AppCompatActivity {
 
             }
         });
+
+        ////////////////////
+
     }
 
     private void showDateTimeDialog(EditText inputdatetime) {
@@ -176,38 +212,82 @@ public class addmeeting extends AppCompatActivity {
 
     //code of place picker to get the place with google api
 
-    public void goPlacePicker(View view){
 
-        //this is the place to call the place picker function
 
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
 
-            startActivityForResult(builder.build(addmeeting.this),PLACE_PICKER_REQUEST);
-        }catch (GooglePlayServicesRepairableException e ){
-            e.printStackTrace();
 
-        }catch (GooglePlayServicesNotAvailableException e ){
-            e.printStackTrace();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+
+                StringBuilder stringBuilder = new StringBuilder();
+                double lat = Double.valueOf(place.getLatLng().latitude);
+                double longi = Double.valueOf(place.getLatLng().longitude);
+
+                stringBuilder.append("LATITUDE :");
+                stringBuilder.append(lat);
+                stringBuilder.append("LOGI :");
+                stringBuilder.append(longi);
+
+                inputplace.setText(stringBuilder.toString());
+
+                getCompleteAddressString(lat,longi);
+            }
         }
     }
 
-    @Override
-    protected void  onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PLACE_PICKER_REQUEST){
-            if (resultCode == RESULT_OK){
-                Place place = PlacePicker.getPlace(addmeeting.this, data);
-                inputplace.setText(place.getAddress());
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        String fullA = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+                StringBuilder fullAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getSubAdminArea()).append("\n");
+                    fullAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                fullA = fullAddress.toString();
+                fullAddress.append("LOGI :");
+                fullAddress.append(fullA);
+
+                inputplace.setText(fullAddress.toString());
+
+
+
+
+
+                Toast.makeText(this, strReturnedAddress.toString() ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, fullAddress.toString() ,Toast.LENGTH_SHORT).show();
+            } else {
 
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            Toast.makeText(this, "not get address", Toast.LENGTH_SHORT).show();
         }
+        return strAdd;
     }
 
 
 
     public void openmainpage1(){
         Intent intent = new Intent(this, MainPage1.class);
+        startActivity(intent);
+    }
+
+    public void openchat(){
+        Intent intent = new Intent(this, chatwithmember.class);
         startActivity(intent);
     }
 
